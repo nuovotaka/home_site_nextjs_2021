@@ -107,6 +107,7 @@ export async function markdownToHtml(markdown: string) {
     allowedSchemesAppliedToAttributes: ['href', 'src', 'cite'],
     allowProtocolRelative: true,
     enforceHtmlBoundary: false,
+    allowedIframeHostnames: ['www.youtube.com'],
   });
   return clean.toString().replace(/@@baseUrl@@/g, process.env.baseUrl || '');
 }

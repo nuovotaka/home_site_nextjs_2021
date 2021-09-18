@@ -8,10 +8,9 @@ module.exports = withBundleAnalyzer({
   poweredByHeader: false,
   trailingSlash: true,
   basePath: baseUrl,
+  webpack5: true,
   env: {
     baseUrl: baseUrl,
   },
-  future: {
-    webpack5: true,
-  },
+  future: {},
 });

@@ -17,7 +17,7 @@ marked.setOptions({
 
 export async function markdownToHtml(markdown: string) {
   const result = await marked(markdown);
-  const clean = sanitizeHtml(result, {
+  const clean = await sanitizeHtml(result, {
     allowedTags: [
       'address',
       'article',

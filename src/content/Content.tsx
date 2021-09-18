@@ -22,6 +22,10 @@ const Content = (props: IContentProps) => (
           @apply my-6;
         }
 
+        .content :global(li) {
+          @apply list-disc;
+        }
+
         .content :global(h2) {
           @apply text-2xl font-semibold text-gray-700 my-4;
         }

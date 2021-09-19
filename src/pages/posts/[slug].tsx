@@ -39,7 +39,7 @@ const DisplayPost = (props: IPostProps) => (
     <h1 className="text-center font-bold text-3xl text-gray-900">{props.title}</h1>
     <div className="text-center text-sm mb-1">
       <svg
-        className="inline mr-2 w-5 h-5"
+        className="inline align-top mr-2 w-5 h-5"
         fill="currentColor"
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +54,7 @@ const DisplayPost = (props: IPostProps) => (
     </div>
     <div className="text-center text-sm mb-8">
       <svg
-        className="inline mr-2 w-5 h-5"
+        className="inline align-top mr-2 w-5 h-5"
         fill="currentColor"
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"

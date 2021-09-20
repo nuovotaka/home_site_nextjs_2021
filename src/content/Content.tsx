@@ -19,11 +19,7 @@ const Content = (props: IContentProps) => (
         }
 
         .content :global(ul) {
-          @apply my-6;
-        }
-
-        .content :global(li) {
-          @apply list-disc;
+          @apply my-6 list-disc;
         }
 
         .content :global(h2) {

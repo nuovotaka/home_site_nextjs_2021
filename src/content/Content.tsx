@@ -29,6 +29,10 @@ const Content = (props: IContentProps) => (
         .content :global(h3) {
           @apply text-xl font-semibold text-gray-700 my-4;
         }
+
+        .content :global(pre, code) {
+          @apply bg-gray-200 rounded;
+        }
       `}
     </style>
   </div>

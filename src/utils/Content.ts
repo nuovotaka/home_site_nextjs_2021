@@ -1,22 +1,49 @@
-import fs from 'fs';
-import { join } from 'path';
-
+import { Octokit } from '@octokit/rest';
 import matter from 'gray-matter';
 
-const postsDirectory = join(process.cwd(), '_posts');
+const octokit = new Octokit({
+  auth: `${process.env.GITHUB_TOKEN}`,
+});
+const base64 = require('js-base64').Base64;
 
 export type PostItems = {
   [key: string]: string;
 };
 
-export function getPostSlugs() {
-  return fs.readdirSync(postsDirectory);
+export async function getPostSlugs() {
+  const { data } = await octokit.rest.repos
+    .getContent({
+      owner: 'nuovotaka',
+      repo: 'home-site-contents',
+      path: '_posts',
+    })
+    .catch((error) => {
+      console.error(error);
+      return null;
+    });
+
+  const list = data.map((obj) => obj.name);
+
+  return list;
 }
 
-export function getPostBySlug(slug: string, fields: string[] = []) {
+export async function getPostBySlug(slug: string, fields: string[] = []) {
   const realSlug = slug.replace(/\.md$/, '');
-  const fullPath = join(postsDirectory, `${realSlug}.md`);
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
+
+  const response = await octokit.rest.repos
+    .getContent({
+      owner: 'nuovotaka',
+      repo: 'home-site-contents',
+      path: `_posts/${realSlug}.md`,
+    })
+    .catch((error) => {
+      console.error(error);
+      return null;
+    });
+
+  const file = response;
+  const fileContents = base64.decode(file.data.content);
+
   const { data, content } = matter(fileContents);
   const items: PostItems = {};
 
@@ -33,15 +60,16 @@ export function getPostBySlug(slug: string, fields: string[] = []) {
       items[field] = data[field];
     }
   });
-
   return items;
 }
 
-export function getAllPosts(fields: string[] = []) {
-  const slugs = getPostSlugs();
-  const posts = slugs
-    .map((slug) => getPostBySlug(slug, fields))
-    // sort posts by date in descending order
-    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
+export async function getAllPosts(fields: string[] = []) {
+  const slugs = await getPostSlugs();
+  const posts = await Promise.all(
+    slugs
+      .map(async (slug) => getPostBySlug(slug, fields))
+      // sort posts by date in descending order
+      .sort((post1, post2) => (post1.date < post2.date ? 1 : -1)),
+  );
   return posts;
 }

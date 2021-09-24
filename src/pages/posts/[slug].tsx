@@ -78,12 +78,12 @@ const DisplayPost = (props: IPostProps) => (
 );
 
 export const getStaticPaths: GetStaticPaths<IPostUrl> = async () => {
-  const posts = getAllPosts(['slug']);
+  const posts = await getAllPosts(['slug']);
 
   return {
     paths: posts.map((post) => ({
       params: {
-        slug: post.slug,
+        slug: (post as any).slug,
       },
     })),
     fallback: false,
@@ -91,7 +91,7 @@ export const getStaticPaths: GetStaticPaths<IPostUrl> = async () => {
 };
 
 export const getStaticProps: GetStaticProps<IPostProps, IPostUrl> = async ({ params }) => {
-  const post = getPostBySlug(params!.slug, [
+  const post = await getPostBySlug(params!.slug, [
     'title',
     'description',
     'date',

@@ -11,6 +11,7 @@ module.exports = withBundleAnalyzer({
   webpack5: true,
   env: {
     baseUrl: baseUrl,
+    GITHUB_TOKEN: process.env.GITHUB_TOKEN,
   },
   future: {},
 });

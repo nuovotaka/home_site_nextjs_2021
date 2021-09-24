@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { GetStaticProps } from 'next';
-
 import { BlogGallery, IBlogGalleryProps } from '../blog/BlogGallery';
 import { Meta } from '../layout/Meta';
 import { IPaginationProps } from '../pagination/Pagination';
@@ -15,7 +13,7 @@ const Index = (props: IBlogGalleryProps) => (
   </Main>
 );
 
-export const getStaticProps: GetStaticProps<IBlogGalleryProps> = async () => {
+export const getStaticProps = async () => {
   const posts = await getAllPosts(['title', 'date', 'slug']);
   const pagination: IPaginationProps = {};
 

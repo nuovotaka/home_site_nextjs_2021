@@ -11,7 +11,7 @@ export type PostItems = {
 };
 
 export async function getPostSlugs() {
-  const { data } = await octokit.rest.repos
+  const response = await octokit.rest.repos
     .getContent({
       owner: 'nuovotaka',
       repo: 'home-site-contents',
@@ -19,10 +19,10 @@ export async function getPostSlugs() {
     })
     .catch((error) => {
       console.error(error);
-      return null;
     });
 
-  const list = data.map((obj) => obj.name);
+  const data: any = response?.data;
+  const list = data.map((obj: any) => obj.name);
 
   return list;
 }
@@ -38,11 +38,10 @@ export async function getPostBySlug(slug: string, fields: string[] = []) {
     })
     .catch((error) => {
       console.error(error);
-      return null;
     });
 
-  const file = response;
-  const fileContents = base64.decode(file.data.content);
+  const file: any = response;
+  const fileContents = base64.decode(file?.data?.content);
 
   const { data, content } = matter(fileContents);
   const items: PostItems = {};
@@ -67,9 +66,9 @@ export async function getAllPosts(fields: string[] = []) {
   const slugs = await getPostSlugs();
   const posts = await Promise.all(
     slugs
-      .map(async (slug) => getPostBySlug(slug, fields))
+      .map(async (slug: any) => getPostBySlug(slug, fields))
       // sort posts by date in descending order
-      .sort((post1, post2) => (post1.date < post2.date ? 1 : -1)),
+      .sort((post1: any, post2: any) => (post1.date < post2.date ? 1 : -1)),
   );
   return posts;
 }

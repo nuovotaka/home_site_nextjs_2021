@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetStaticPaths } from 'next';
 
 import { BlogGallery, IBlogGalleryProps } from '../blog/BlogGallery';
 import { Meta } from '../layout/Meta';
@@ -38,7 +38,7 @@ export const getStaticPaths: GetStaticPaths<IPageUrl> = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps<IBlogGalleryProps, IPageUrl> = async ({ params }) => {
+export const getStaticProps = async ({ params }: { params: any }) => {
   const posts = await getAllPosts(['title', 'date', 'slug']);
 
   const pages = convertTo2D(posts, Config.pagination_size);

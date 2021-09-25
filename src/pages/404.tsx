@@ -1,12 +1,20 @@
 import React from 'react';
 
-export default function Custom404() {
+import { NextPage } from 'next';
+import Link from 'next/link';
+
+const Custom404Page: NextPage = () => {
   return (
     <>
       <h1 className="font-bold">404 - Page Not Found</h1>
       <div className="w-1/4 h-1/4">
         <img src="/assets/images/posts/404.svg" alt="404error" />
       </div>
+      <Link href="/">
+        <a>Go back home</a>
+      </Link>
     </>
   );
-}
+};
+
+export default Custom404Page;

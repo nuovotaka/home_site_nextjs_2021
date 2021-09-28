@@ -116,6 +116,10 @@ const Meta = (props: IMetaProps) => {
             />
           </>
         )}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2390425539078205"
+        />
       </Head>
     </>
   );

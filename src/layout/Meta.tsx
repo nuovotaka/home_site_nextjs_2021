@@ -114,11 +114,6 @@ const Meta = (props: IMetaProps) => {
               }}
               key="ldjson"
             />
-            <script
-              data-ad-client="ca-pub-2390425539078205"
-              async
-              src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-            />
           </>
         )}
       </Head>

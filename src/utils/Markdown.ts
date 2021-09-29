@@ -90,6 +90,7 @@ export async function markdownToHtml(markdown: string) {
       'thead',
       'tr',
       'img',
+      'del',
     ],
     disallowedTagsMode: 'discard',
     allowedAttributes: {

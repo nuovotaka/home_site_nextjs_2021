@@ -22,6 +22,8 @@ type IPostProps = {
   content: string;
 };
 
+let asPath: string;
+
 const DisplayPost = (props: IPostProps) => (
   <Main
     meta={(
@@ -74,6 +76,7 @@ const DisplayPost = (props: IPostProps) => (
         dangerouslySetInnerHTML={{ __html: props.content }}
       />
     </Content>
+    <div key={asPath} />
   </Main>
 );
 

@@ -1,16 +1,19 @@
 import React, { useEffect } from 'react';
 
+import { useRouter } from 'next/router';
+
 const Adsense = () => {
+  const { asPath } = useRouter();
   useEffect(() => {
     try {
       (window.adsbygoogle = window.adsbygoogle || []).push({});
     } catch (err) {
       console.log(err);
     }
-  }, []);
+  }, [asPath]);
 
   return (
-    <div>
+    <div key={asPath}>
       <ins
         className="adsbygoogle"
         style={{ display: 'block' }}

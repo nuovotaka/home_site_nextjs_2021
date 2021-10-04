@@ -13,9 +13,9 @@ export type PostItems = {
 export async function getPostSlugs() {
   const response = await octokit.rest.repos
     .getContent({
-      owner: 'nuovotaka',
-      repo: 'home-site-contents',
-      path: '_posts',
+      owner: `${process.env.OWNER}`,
+      repo: `${process.env.REPO}`,
+      path: `${process.env.DIR}`,
     })
     .catch((error) => {
       console.error(error);
@@ -32,9 +32,9 @@ export async function getPostBySlug(slug: string, fields: string[] = []) {
 
   const response = await octokit.rest.repos
     .getContent({
-      owner: 'nuovotaka',
-      repo: 'home-site-contents',
-      path: `_posts/${realSlug}.md`,
+      owner: `${process.env.OWNER}`,
+      repo: `${process.env.REPO}`,
+      path: `${process.env.DIR}/${realSlug}.md`,
     })
     .catch((error) => {
       console.error(error);

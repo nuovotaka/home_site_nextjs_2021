@@ -24,8 +24,8 @@ const Main = (props: IMainProps) => (
                   className="rounded-full"
                   width={50}
                   height={50}
-                  src="/nuovotaka-logo.svg"
-                  alt="Avator"
+                  src={Config.avatar}
+                  alt="Avatar"
                 />
               </a>
             </Link>

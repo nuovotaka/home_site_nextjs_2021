@@ -18,7 +18,7 @@ export async function getPostSlugs() {
       path: `${process.env.DIR}`,
     })
     .catch((error) => {
-      console.error(error);
+      console.error('Githubリポジトリが不正です\n', error.response.url);
     });
 
   const data: any = response?.data;
@@ -37,7 +37,7 @@ export async function getPostBySlug(slug: string, fields: string[] = []) {
       path: `${process.env.DIR}/${realSlug}.md`,
     })
     .catch((error) => {
-      console.error(error);
+      console.error('Githubリポジトリが不正です\n', error);
     });
 
   const file: any = response;

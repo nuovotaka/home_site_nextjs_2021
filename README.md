@@ -12,13 +12,14 @@
 ### コンテンツのGithubリポジトリの下記項目を環境変数へ設定
 環境変数名は
 ```
+GITHUB_TOKEN
 OWNER
 REPO
 DIR
 ```
-の３つです。
+の4つです。
 最後のファイル名はコード内で取得します。
-ファイル名がslugになります。
+ファイル名がUrlになります。
 
 ### VercelのDeploy Hookを取得
 Appの```settings > Git > Deploy Hook```がありますのでそこで取得してコピーしてください。
@@ -28,6 +29,20 @@ Vercelで取得したUrlをコンテンツのリポジトリの設定からWeb H
 
 以上の設定でApp、コンテンツそれぞれで```Build & Deploy```が走ります。
 コンテンツをGithubへプッシュした時、Appを修正したときにそれぞれ走るようになっています。
+
+### Build & Deploy コマンド
+```
+Framework preset    'Next.js'を選択
+BUILD COMMAND   override無し
+OUTPUT DIRECTORY  override無し
+INSTALL COMMAND  override無し
+DEVELOPMENT COMMAND override無し
+```
+デフォルトのままでOKです。
+ルートディレクトリ、```Node.js```のバージョンもそのまま(2021/10/6現在)になります。
+### 記事コンテンツについて
+```blog```なり、```posts```なりディレクトリの中に最低でも１つ記事を用意してください。
+ここで使用したディレクトリ名が上で利用する```DIR```の環境変数名になります。
 
 ### 参考
 [構成図](https://nuovotaka.com/posts/2021-09-25-Nextjs-Tailwindcss/)

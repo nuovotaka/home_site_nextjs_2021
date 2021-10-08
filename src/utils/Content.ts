@@ -38,7 +38,7 @@ export async function getPostBySlug(slug: string, fields: string[] = []) {
       path: `${process.env.DIR}/${realSlug}.md`,
     })
     .catch((error) => {
-      console.error('\nGithubリポジトリが不正です\n', error.response.url);
+      console.error('\nGithubリポジトリが不正です\n', error.status);
       throw new Error('Githubリポジトリ名などが間違っています。');
     });
 
